@@ -120,7 +120,7 @@ function! s:CoffeeCompile(startline, endline, args)
   let watch = a:args =~ '\<watch\>'
   let unwatch = a:args =~ '\<unwatch\>'
   let size = str2nr(matchstr(a:args, '\<\d\+\>'))
-   
+
   " Determine default split direction.
   if exists("g:coffee_compile_vert")
     let vert = 1
@@ -150,7 +150,7 @@ function! s:CoffeeCompile(startline, endline, args)
     " Create the new window and resize it.
     if vert
       let width = size ? size : winwidth(src_win) / 2
-
+      set splitright
       vertical new
       exec 'vertical resize' width
     else
@@ -159,7 +159,7 @@ function! s:CoffeeCompile(startline, endline, args)
       \                               a:endline - a:startline + 2])
 
       botright new
-      exec 'resize' height
+      exec 'resize' 24
     endif
 
     " Set up scratch buffer.
